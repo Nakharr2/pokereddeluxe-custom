@@ -28,12 +28,13 @@ GainExperience: ; 5524f (15:524f)
 	add hl, de
 	ld d, h
 	ld e, l
-	ld hl, wEnemyMonBaseStats
+	; disabled stat exp gain after battle, vitamins still work
+	ld hl, 0
 	ld c, $5
 .gainStatExpLoop
-	ld a, [hli]
+	ld a, 0
 	ld b, a ; enemy mon base stat
-	ld a, [de] ; stat exp
+	ld a, 0 ; stat exp
 	add b ; add enemy mon base state to stat exp
 	ld [de], a
 	jr nc, .nextBaseStat

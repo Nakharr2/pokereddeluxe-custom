@@ -6792,28 +6792,7 @@ CalculateModifiedStat: ; 3eda5 (f:6da5)
 	ret
 
 ApplyBadgeStatBoosts: ; 3ee19 (f:6e19)
-	ld a, [W_ISLINKBATTLE]
-	cp $4
-	ret z ; return if link battle
-	ld a, [W_OBTAINEDBADGES]
-	ld b, a
-	ld hl, wBattleMonAttack
-	ld c, $4
-; the boost is applied for badges whose bit position is even
-; the order of boosts matches the order they are laid out in RAM
-; Boulder (bit 0) - attack
-; Thunder (bit 2) - defense
-; Soul (bit 4) - speed
-; Volcano (bit 6) - special
-.loop
-	srl b
-	call c, .applyBoostToStat
-	inc hl
-	inc hl
-	srl b
-	dec c
-	jr nz, .loop
-	ret
+	ret ; disabled badge stat boost
 
 ; multiply stat at hl by 1.125
 ; cap stat at 999
