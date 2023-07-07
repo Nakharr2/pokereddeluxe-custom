@@ -1682,11 +1682,6 @@ EnemySendOutFirstMon: ; 3c92a (f:492a)
 	ld a,[W_OPTIONS]
 	bit 6,a
 	jr nz,.next4
-IF CHALLENGE_MODE_PLUS
-	ld a,[W_OPTIONS]
-	bit 6,a
-	jr z,.next4 ; Force Set mode no matter what the bit is set to
-ENDC
 	ld hl, TrainerAboutToUseText
 	call PrintText
 	hlCoord 0, 7
@@ -2554,11 +2549,6 @@ DisplayPlayerBag:
 	ld a, [W_ISLINKBATTLE]
 	cp $4
 	jp z, DisplayBattleMenu ; prevent items from being used in Link Battles
-IF CHALLENGE_MODE_PLUS
-	ld a, [wIsTrainerBattle]
-	cp $1
-	jp z, DisplayBattleMenu ; Using items in battle is disabled in Challenge and Lunatic Modes+
-ENDC
 	; get the pointer to player's bag when in a normal battle
 	ld hl, wNumBagItems
 	ld a, l
