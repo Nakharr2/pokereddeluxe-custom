@@ -3411,7 +3411,7 @@ ExecutePlayerMove: ; 3d65e (f:565e)
 	jp z, Func_3d80a
 	call CheckPlayerStatusConditions
 	jr nz, .asm_3d68a
-	jp [hl]
+	jp hl
 .asm_3d68a
 	call GetCurrentMove
 	ld hl, W_PLAYERBATTSTATUS1
@@ -5771,7 +5771,7 @@ ExecuteEnemyMove: ; 3e6bc (f:66bc)
 	ld [wd05b], a
 	call CheckEnemyStatusConditions
 	jr nz, .canUseMove
-	jp [hl]
+	jp hl
 .canUseMove
 	ld hl, W_ENEMYBATTSTATUS1
 	bit 4, [hl] ; is the enemy charging up for attack?
@@ -7311,7 +7311,7 @@ _JumpMoveEffect: ; 3f138 (f:7138)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]       ;jump to special effect handler
+	jp hl       ;jump to special effect handler
 
 MoveEffectPointerTable: ; 3f150 (f:7150)
 	 dw SleepEffect               ; unused effect
